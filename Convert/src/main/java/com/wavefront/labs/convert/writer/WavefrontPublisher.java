@@ -112,7 +112,7 @@ public class WavefrontPublisher implements Writer {
 		boolean sendEmail = Boolean.getBoolean(properties.getProperty("convert.writer.publish.user.sendEmail", "false"));
 		try {
 
-			new UserApi(apiClient).createOrUpdateUser(user, sendEmail);
+			new UserApi(apiClient).createOrUpdateUser(sendEmail, user);
 		} catch (ApiException e) {
 			logger.error("API Exception creating user: " + user.getEmailAddress(), e);
 		}

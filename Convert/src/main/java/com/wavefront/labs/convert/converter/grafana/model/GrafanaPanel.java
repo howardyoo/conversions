@@ -29,6 +29,8 @@ public class GrafanaPanel {
 	private String type;
 	private ArrayList<GrafanaPanelYAxis> yaxes;
 	private String valueFontSize;
+	// optional child panels (e.g. graph type)
+	private ArrayList<GrafanaPanel> panels;
 
 	public HashMap getAlert() {
 		return alert;
@@ -197,6 +199,12 @@ public class GrafanaPanel {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public ArrayList<GrafanaPanel> getPanels() {
+		return panels;
+	}
+
+	public void setPanels(ArrayList<GrafanaPanel> panels) { this.panels = panels; }
 
 	public class GridPos {
 		private int h;

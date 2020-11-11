@@ -262,11 +262,20 @@ public class GrafanaConverterHelper {
 				chartSourceQuery.setDisabled(target.isHide());
 				chartSourceQuery.setName(target.getRefId());
 
-				String query = target.getTargetFull() != null && !target.getTargetFull().equals("") ? target.getTargetFull() : target.getTarget();
+				// String query = target.getTargetFull() != null && !target.getTargetFull().equals("") ? target.getTargetFull() : target.getTarget();
+				String query = target.getExpr() != null && !target.getExpr().equals("") ? target.getExpr() : target.getTarget();
 				if (query != null && !query.equals("")) {
-					chartSourceQuery.setQuery(expressionBuilder.buildExpression(query));
+					query = expressionBuilder.buildExpression(query);
+					chartSourceQuery.setQuery(query);
+					chartSourceQuery.setSourceDescription(query);
+				} else if (target.getQuery() != null && !target.getQuery().equals("")) {
+					query = expressionBuilder.buildExpression(target.getQuery());
+					chartSourceQuery.setQuery(query);
+					chartSourceQuery.setSourceDescription(query);
+				} else {
+					chartSourceQuery.setQuery("0");
+					chartSourceQuery.setSourceDescription("Query is empty or not found. Defaulting to value 0");
 				}
-
 				chartSourceQueries.add(chartSourceQuery);
 			}
 		}

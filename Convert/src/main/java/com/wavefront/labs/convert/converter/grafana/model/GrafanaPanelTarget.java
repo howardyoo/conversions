@@ -10,6 +10,11 @@ public class GrafanaPanelTarget {
 	private String refId;
 	private String target;
 	private String targetFull;
+	private String expr;
+	private String query;
+	private String format;
+	private String interval;
+	private int intervalFactor;
 	private boolean textEditor;
 
 	public boolean isHide() {
@@ -58,5 +63,45 @@ public class GrafanaPanelTarget {
 
 	public void setTextEditor(boolean textEditor) {
 		this.textEditor = textEditor;
+	}
+
+	public String getExpr() {
+		return expr;
+	}
+
+	public void setExpr(String expr) {
+		this.expr = expr;
+	}
+
+	public String getFormat() {
+		return format;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
+	public String getInterval() {
+		return interval;
+	}
+
+	public void setInterval(String interval) {
+		this.interval = interval;
+	}
+
+	public int getIntervalFactor() {
+		return intervalFactor;
+	}
+
+	public void setIntervalFactor(int intervalFactor) {
+		this.intervalFactor = intervalFactor;
+	}
+
+	public String getQuery() {
+		return query;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
 	}
 }

@@ -31,7 +31,8 @@ public class FolderWriter implements Writer {
 		if (!baseFolder.endsWith(File.separator)) {
 			baseFolder += File.separator;
 		}
-		gson = new GsonBuilder().setPrettyPrinting().create();
+		// added disable HTML escaping
+		gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 	}
 
 	@Override

@@ -95,6 +95,26 @@ public class GrafanaConverter implements Converter {
 					}
 					dashboardSection.setName(panel.getTitle());
 					rowStart = true;
+					/* ----
+					   check whether the panel has sub panels (child panels)
+					   ----
+					 */
+					if(panel.getPanels() != null && panel.getPanels().size() > 0) {
+						// logic to process child panels into this dashboard section.
+						DashboardSectionRow row = null;
+						// iterate through the child panels -
+						// but we need to make sure
+						int panels_in_row=0;
+						for(GrafanaPanel _panel : panel.getPanels() ) {
+							if(panels_in_row % 10 == 0) {
+								row = new DashboardSectionRow();
+								dashboardSection.addRowsItem(row);
+							}
+							Chart chart = grafanaConverterHelper.buildChart(_panel);
+							row.addChartsItem(chart);
+							panels_in_row++;
+						}
+					}
 				} else {
 					Chart chart = grafanaConverterHelper.buildChart(panel);
 					dashboardSectionRow.addChartsItem(chart);

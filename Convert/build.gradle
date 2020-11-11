@@ -21,6 +21,7 @@ sourceSets {
             srcDir 'src/main/resources'
         }
     }
+    /*
     test {
         java {
             srcDir 'src/test/java'
@@ -30,6 +31,7 @@ sourceSets {
             srcDir 'test_converted'
         }
     }
+     */
 }
 
 dependencies
@@ -56,6 +58,16 @@ task (convertDatadog, dependsOn: 'classes', type: JavaExec) {
     main = 'com.wavefront.labs.convert.Convert'
     classpath = sourceSets.main.runtimeClasspath
     args 'datadog.properties', 'test_resources/datadog'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "com.wavefront.labs.convert.Convert"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 
